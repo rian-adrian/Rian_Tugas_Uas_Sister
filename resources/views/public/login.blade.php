@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #f8f9fa;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -53,6 +54,16 @@
         }
 
         .alert {
+            color: #45EA3F;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: .75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
+        .alertfail {
             color: #721c24;
             background-color: #f8d7da;
             border-color: #f5c6cb;
@@ -62,13 +73,28 @@
             border-radius: .25rem;
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 
 <body>
     <div class="login-container">
+        @if (session('success'))
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success',
+                        text: '{{ session('success') }}',
+                        timer: 3000, // 3 seconds
+                        showConfirmButton: false
+                    });
+                });
+            </script>
+        @endif
         <h2>Login</h2>
         @if ($errors->any())
-            <div class="alert alert-danger">
+            <div class="alertfail alert-danger">
                 <ul style="list-style-type: none; padding-left: 0;">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -81,8 +107,11 @@
             <input type="email" name="email" placeholder="Email" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
+            <p style="padding-top: 1rem">belum punya akun? <a href="/register" style="">Register !</a></p>
+            <p style="padding-top: 1rem"><a href="/register" style="">Lupa password ?</a></p>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

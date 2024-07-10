@@ -75,4 +75,48 @@ class LoginController extends Controller
         Session::forget('user');
         return redirect('/login');
     }
+
+    //register
+    public function register()
+    {
+        return view("public.register");
+    }
+    public function registerakun(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // contoh validasi untuk gambar
+        ], [
+            'name.required' => 'Nama wajib diisi.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Email harus berformat yang valid.',
+            'password.required' => 'Password wajib diisi.',
+            'password.min' => 'Password minimal harus terdiri dari 8 karakter.',
+            'password.regex' => 'Password harus mengandung minimal satu huruf besar, satu huruf kecil, dan satu angka.',
+            'image.required' => 'Gambar wajib diunggah.',
+            'image.image' => 'File harus berupa gambar.',
+            'image.mimes' => 'Format gambar yang diperbolehkan: jpeg, png, jpg, gif.',
+            'image.max' => 'Ukuran gambar maksimal 2MB.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password')); // Enkripsi password sebelum disimpan
+
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $user->image = $imageName;
+        }
+
+        $user->save();
+
+        return redirect('/login')->with('success', 'Data user berhasil terdaftar, silahkan login.');
+    }
 }
