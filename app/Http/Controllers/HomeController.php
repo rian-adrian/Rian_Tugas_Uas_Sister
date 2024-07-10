@@ -6,7 +6,6 @@ use App\Http\Requests\StoreHomeRequest;
 use App\Http\Requests\UpdateHomeRequest;
 use App\Models\Home;
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -17,14 +16,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if (session('user')) {
-            return redirect('/');
-        }
-        if (Auth::check()) {
-            return redirect('/');
-        } else {
-            return view("public.login");
-        }
 
         $products = Product::all();
         return view('public.home', [

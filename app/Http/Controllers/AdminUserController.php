@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class AdminUserController extends Controller
 {
@@ -15,17 +14,8 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        if (session('user')) {
-            return redirect('/');
-        }
-        if (Auth::check()) {
-            return redirect('/');
-        } else {
-            return view("public.login");
-        }
 
-        return view('admin.user.index', [
-        ]);
+        return view('admin.user.index');
     }
     public function getalldata()
     {
@@ -42,14 +32,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        if (session('user')) {
-            return redirect('/');
-        }
-        if (Auth::check()) {
-            return redirect('/');
-        } else {
-            return view("public.login");
-        }
+
         return view('admin.user.create', [
             //TODO
         ]);
