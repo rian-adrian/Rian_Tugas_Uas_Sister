@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminUserController extends Controller
 {
@@ -14,6 +15,15 @@ class AdminUserController extends Controller
      */
     public function index()
     {
+        if (session('user')) {
+            return redirect('/');
+        }
+        if (Auth::check()) {
+            return redirect('/');
+        } else {
+            return view("public.login");
+        }
+
         return view('admin.user.index', [
         ]);
     }
@@ -32,6 +42,14 @@ class AdminUserController extends Controller
      */
     public function create()
     {
+        if (session('user')) {
+            return redirect('/');
+        }
+        if (Auth::check()) {
+            return redirect('/');
+        } else {
+            return view("public.login");
+        }
         return view('admin.user.create', [
             //TODO
         ]);
@@ -46,6 +64,7 @@ class AdminUserController extends Controller
     public function store(Request $request)
     {
         // Validasi data
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|unique:users,email', // Menambahkan validasi unik untuk email

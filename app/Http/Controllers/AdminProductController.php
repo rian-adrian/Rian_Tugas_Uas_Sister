@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminProductController extends Controller
 {
@@ -13,13 +14,26 @@ class AdminProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('admin.product.index');
-        //tampilan doang
+    {if (session('user')) {
+        return redirect('/');
     }
+        if (Auth::check()) {
+            return redirect('/');
+        } else {
+            return view("public.login");
+        }
+        return view('admin.product.index');}
 
     public function getalldata()
     {
+        if (session('user')) {
+            return redirect('/');
+        }
+        if (Auth::check()) {
+            return redirect('/');
+        } else {
+            return view("public.login");
+        }
         return response()->json([
             'message' => 'Product created successfully',
             'product' => Product::all(),
