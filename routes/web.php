@@ -27,5 +27,7 @@ Route::get('/admin', [DashboardController::class, 'index'])->middleware('auth');
 
 //Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/register', [LoginController::class, 'register'])->name('login');
+Route::post('/registerakun', [LoginController::class, 'registerakun'])->name('registerakun');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/ceklogin', [LoginController::class, 'ceklogin'])->name('ceklogin');

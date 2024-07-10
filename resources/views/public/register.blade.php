@@ -29,6 +29,16 @@
             margin-bottom: 20px;
         }
 
+        .alert {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            padding: .75rem 1.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+        }
+
         .register-container input[type="text"],
         .register-container input[type="email"],
         .register-container input[type="password"],
@@ -58,16 +68,62 @@
 
 <body>
     <div class="register-container">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul style="list-style-type: none; padding-left: 0;">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h2>Register</h2>
-        <form method="POST" enctype="multipart/form-data">
-            <input type="text" name="" placeholder="Name" required>
-            <input type="email" name="" placeholder="Email" required>
-            <input type="text" name="" placeholder="Username" required>
-            <input type="password" name="" placeholder="Password" required>
-            <input type="file" name="" placeholder="Upload Image" required>
+        <form method="POST" action="registerakun" enctype="multipart/form-data">
+            @csrf
+            <input type="text" name="name" placeholder="Name" value="{{ old('name') }}" required>
+            @error('name')
+                <span style="color: red;">{{ $message }}</span>
+            @enderror
+
+            <input type="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
+            @error('email')
+                <span style="color: red;">{{ $message }}</span>
+            @enderror
+
+            <input type="password" name="password" placeholder="Password" required>
+            @error('password')
+                <span style="color: red;">{{ $message }}</span>
+            @enderror
+
+            <input type="file" name="image" placeholder="Upload Image" id="imageUpload" accept="image/*" required>
+            @error('image')
+                <span style="color: red;">{{ $message }}</span>
+            @enderror
+
+            <img id="imagePreview" src="#" alt="Preview Image"
+                style="display: none; max-width: 200px; max-height: 200px; padding-bottom: 2rem">
+
             <button type="submit">Register</button>
+            <p>sudah punya akun? <a href="/login" style="">Login !</a></p>
         </form>
+
     </div>
+    <script>
+        // Function to preview image before upload
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var imgElement = document.getElementById('imagePreview');
+                imgElement.src = reader.result;
+                imgElement.style.display = 'block';
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // Add event listener to the file input element
+        var fileInput = document.getElementById('imageUpload');
+        fileInput.addEventListener('change', previewImage);
+    </script>
 </body>
 
 </html>
