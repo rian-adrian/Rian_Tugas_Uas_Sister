@@ -108,7 +108,7 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
             <p style="padding-top: 1rem">belum punya akun? <a href="/register" style="">Register !</a></p>
-            <p style="padding-top: 1rem"><a href="/register" style="">Lupa password ?</a></p>
+            <p style="padding-top: 1rem"><a href="/lupa" style="">Lupa password ?</a></p>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LupaPasswordController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,8 @@ Route::get('/register', [LoginController::class, 'register'])->name('login');
 Route::post('/registerakun', [LoginController::class, 'registerakun'])->name('registerakun');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::post('/ceklogin', [LoginController::class, 'ceklogin'])->name('ceklogin');
+
+//lupa
+Route::get('/lupa', [LupaPasswordController::class, 'index'])->name('lupa');
+Route::get('/resetpassword', [LupaPasswordController::class, 'index'])->name('resetpassword');
+Route::post('/lupapw', [LupaPasswordController::class, 'lupapw'])->name('lupapw');
