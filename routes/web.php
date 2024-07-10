@@ -19,11 +19,15 @@ Route::resource('/keranjang', KeranjangController::class)->names("keranjang")->m
 Route::resource('/adminproduct', AdminProductController::class)->names("adminproduct")->middleware('auth');
 Route::get('/getalldataproduct', [AdminProductController::class, 'getalldata']);
 Route::post('/createdataproduct', [AdminProductController::class, 'store']);
-Route::post('/updatedataproduct', [AdminProductController::class, 'update']);
+Route::post('/updatedataproduct', [AdminProductController::class, 'updateApi']);
+Route::post('/deletedataproduct', [AdminProductController::class, 'destroyApi']);
 //user
 Route::get('/getalldatauser', [AdminUserController::class, 'getalldata']);
 Route::resource('/adminuser', AdminUserController::class)->names("adminuser");
 Route::get('/admin', [DashboardController::class, 'index'])->middleware('auth');
+Route::post('/createdatauser', [AdminUserController::class, 'store']);
+Route::post('/updatedatauser', [AdminUserController::class, 'updateApi']);
+Route::post('/deletedatauser', [AdminUserController::class, 'destroyApi']);
 
 //Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
