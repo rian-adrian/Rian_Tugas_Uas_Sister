@@ -16,9 +16,9 @@ Route::resource('/keranjang', KeranjangController::class)->names("keranjang");
 //admin
 Route::resource('/adminproduct', AdminProductController::class)->names("adminproduct");
 Route::get('/getalldataproduct', [AdminProductController::class, 'getalldata']);
+
+Route::post('/createdataproduct', [AdminProductController::class, 'store']);
+
 Route::get('/getalldatauser', [AdminUserController::class, 'getalldata']);
 Route::resource('/adminuser', AdminUserController::class)->names("adminuser");
 Route::get('/admin', [DashboardController::class, 'index']);
-
-
-
