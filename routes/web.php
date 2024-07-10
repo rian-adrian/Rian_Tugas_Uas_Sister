@@ -27,4 +27,4 @@ Route::get('/admin', [DashboardController::class, 'index']);
 //Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::post('/ceklogin', [LoginController::class, 'login'])->name('ceklogin');
+Route::post('/ceklogin', [LoginController::class, 'ceklogin'])->name('ceklogin');
