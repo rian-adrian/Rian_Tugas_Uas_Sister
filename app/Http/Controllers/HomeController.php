@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Home;
 use App\Http\Requests\StoreHomeRequest;
 use App\Http\Requests\UpdateHomeRequest;
+use App\Models\Home;
 use App\Models\Product;
+
 class HomeController extends Controller
 {
     /**
@@ -15,6 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $products = Product::all();
         return view('public.home', [
             'products' => $products,

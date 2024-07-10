@@ -14,12 +14,13 @@ class AdminProductController extends Controller
      */
     public function index()
     {
+
         return view('admin.product.index');
-        //tampilan doang
     }
 
     public function getalldata()
     {
+
         return response()->json([
             'message' => 'Product created successfully',
             'product' => Product::all(),

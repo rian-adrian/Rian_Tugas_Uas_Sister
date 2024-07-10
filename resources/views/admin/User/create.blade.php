@@ -13,7 +13,8 @@
                         </div>
                         <!-- form start -->
                         <form action="{{ route('adminuser.store') }}" method="POST" enctype="multipart/form-data"
-                            id="quickForm" onsubmit="submitForm(event)">
+                            id="quickForm">
+                            {{-- id="quickForm" onsubmit="submitForm(event)"> --}}
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
