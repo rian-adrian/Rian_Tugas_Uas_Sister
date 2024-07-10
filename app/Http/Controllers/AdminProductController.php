@@ -47,7 +47,7 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+
         // Validasi data
         $request->validate([
             'name' => 'required|string|max:255',
