@@ -2,10 +2,7 @@
 
 @section('content')
     <section class="hero">
-        <img src="https://via.placeholder.com/1500x600" alt="Model Fashion">
-        <div class="hero-text">
-            <h2>Tampil Anggun dan Menawan</h2>
-        </div>
+        <img src="{{ asset('images/web.jpeg') }}" alt="Model Fashion">
     </section>
 
     <section class="welcome">
@@ -13,16 +10,16 @@
     </section>
     <section class="products">
         <div class="product">
-            <img src="https://via.placeholder.com/300x400" alt="Produk 1">
-            <h3>Produk 1</h3>
+            <img src="{{ asset('images/2.jpeg') }}" alt="Produk 1">
+            <h3>Pakaian tradisional jawa</h3>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/300x400" alt="Produk 2">
-            <h3>Produk 2</h3>
+            <img src="{{ asset('images/4.jpg') }}" alt="Produk 2">
+            <h3>Pakaian tradisional bali</h3>
         </div>
         <div class="product">
-            <img src="https://via.placeholder.com/300x400" alt="Produk 3">
-            <h3>Produk 3</h3>
+            <img src="{{ asset('images/3.jpeg') }}" alt="Produk 3">
+            <h3>Pakaian tradisional bali</h3>
         </div>
     </section>
     <section class="products">

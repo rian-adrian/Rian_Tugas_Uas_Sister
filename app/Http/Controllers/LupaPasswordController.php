@@ -14,6 +14,7 @@ class LupaPasswordController extends Controller
     //
     public function index()
     {
+        //ini untuk tampilan lupa passwornya
         return view('public.lupa');
     }
 

@@ -14,12 +14,14 @@ class AdminProductController extends Controller
      */
     public function index()
     {
+        //tampilan produknya
 
         return view('admin.product.index');
     }
 
     public function getalldata()
     {
+        //unutk mengambil semua data produck
 
         return response()->json([
             'message' => 'Product created successfully',
@@ -35,6 +37,7 @@ class AdminProductController extends Controller
      */
     public function create()
     {
+        //unutk tampilan create
         return view('admin.product.create', [
             //TODO
         ]);
@@ -111,6 +114,8 @@ class AdminProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //disini say mengugnakan 2 update yang dimana unutk update biasa unutk update 
+        //dari web dan unutk update Api itu digunakna untuk postman
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
@@ -148,6 +153,7 @@ class AdminProductController extends Controller
         ], 201);
         // return redirect('/adminproduct')->with('success', 'Product updated successfully.');
     }
+
     public function updateApi(Request $request)
     {
         $request->validate([

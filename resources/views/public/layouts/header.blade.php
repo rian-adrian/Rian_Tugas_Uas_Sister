@@ -1,6 +1,6 @@
 <header>
     <div class="logo">
-        <h1>Toko Online Fashion</h1>
+        <h1>Toko Online Baju Tradisional</h1>
     </div>
     <nav>
         <ul>

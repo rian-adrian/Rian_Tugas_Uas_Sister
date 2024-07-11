@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
+    //tampilan loginnya.logi yang diambil dari public dan ketika data user usudah ada langsung arahkan  kehome
     public function index()
     {
         if (session('user')) {
@@ -21,9 +22,10 @@ class LoginController extends Controller
             return view("public.login");
         }
     }
+
     public function ceklogin(Request $request)
     {
-        // Validate the form data
+        // falidasi data
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -47,6 +49,7 @@ class LoginController extends Controller
     }
     public function loginAPI(Request $request)
     {
+        //dan ini unutk login menggunakan Api yang dimana untuk mengembalikan data respon
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -71,23 +74,27 @@ class LoginController extends Controller
     }
     public function logout()
     {
+        //dna ini unutk menghapus data user yang tersimpan di season
         Auth::logout();
         Session::forget('user');
         return redirect('/login');
     }
 
     //register
+
     public function register()
     {
+        //tampilan register
         return view("public.register");
     }
     public function registerakun(Request $request)
     {
+        //setelah itu membuat validasui data dengan mengunakan validator laravel yang dimana paswornya itu dibuat jadi acak
         $validator = Validator::make($request->all(), [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // contoh validasi untuk gambar
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
         ], [
             'name.required' => 'Nama wajib diisi.',
             'email.required' => 'Email wajib diisi.',
